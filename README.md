@@ -101,8 +101,8 @@ VITE_API_BASE_URL=https://your-ktor-server.com/api
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/ipca-social-store.git
-cd ipca-social-store/web
+git clone https://github.com/Arianna-Cicero/Web-SAS-IPCA.git
+cd Web-SAS-IPCA
 ```
 
 ### 2. Install Dependencies
