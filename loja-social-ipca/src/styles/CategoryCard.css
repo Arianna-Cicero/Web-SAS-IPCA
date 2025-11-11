@@ -1,0 +1,33 @@
+.category-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #004d33;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.category-icon {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 0.1rem;
+  filter: brightness(0) saturate(100%) invert(23%) sepia(70%) saturate(460%)
+    hue-rotate(100deg) brightness(95%) contrast(92%);
+}
+
+.category-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
