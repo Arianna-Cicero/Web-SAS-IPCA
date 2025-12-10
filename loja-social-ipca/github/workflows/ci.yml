@@ -1,4 +1,7 @@
 name: CI - React Build & Test
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 on:
   push:
@@ -9,6 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20]
+      fail-fast: false
 
     steps:
       - name: Checkout repository
@@ -17,7 +24,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -28,11 +37,22 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Run tests
-        run: npm test --if-present
-
-      - name: Upload coverage report
-        if: success() && steps.test.outcome == 'success'
+      - name: Upload build artifact
+        if: success()
         uses: actions/upload-artifact@v3
         with:
-          name: coverage-report
+          name: build-artifact-${{ matrix.node-version }}
+          path: ./build
+
+      - name: Run tests
+        id: test
+        env:
+          CI: true
+        run: npm test --if-present -- --watchAll=false
+
+      - name: Upload coverage report
+        if: steps.test.outcome == 'success'
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report-${{ matrix.node-version }}
+          path: ./coverage
