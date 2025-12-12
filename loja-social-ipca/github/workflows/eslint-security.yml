@@ -1,0 +1,30 @@
+name: ESLint Security Linting
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  eslint-security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint with security rules
+        run: npx eslint src --ext .ts,.tsx --config .eslintrc.json
+
+      - name: Run security-focused linting
+        run: npx eslint src --ext .ts,.tsx --plugin security --rule "security/detect-eval-with-expression: error" --rule "security/detect-unsafe-regex: warn" --rule "security/detect-non-literal-regexp: warn"

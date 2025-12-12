@@ -1,0 +1,97 @@
+.About {
+  background-color: #fafaf1;
+  color: #005321;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.About-hero { 
+  background-color: #005321;
+  color: #FAFAF1;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Título SOBRE */
+.About-hero h1 {
+  font-size: 7rem;
+  font-weight: 700;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+/* Subtitulos */
+.subtitle-about h2 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 2rem 0;
+
+}
+
+.subtitle-about {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+/* Imagem do casal */
+.About-image {
+  width: 380px;
+  max-width: 90%;
+  position: absolute;
+  right: 2rem;
+  bottom: -1rem; 
+}
+
+@media (max-width: 768px) {
+  .About-image {
+    position: static;
+    margin-top: 2rem;
+    width: 220px;
+    align-self: center;
+  }
+
+  .About-hero h1 {
+    font-size: 2.4rem;
+  }
+}
+
+
+/* CONTEÚDO -------------------------------------------------------- */
+
+.About-content {
+  background-color: #F5F3E8;
+  padding: 0rem 1.5rem;
+  color: #00411A;
+  line-height: 1.7;
+  font-size: 1.75rem;
+}
+
+.About-content p {
+  max-width: 920px;
+  margin: 0 auto 1rem;
+  text-align: center;
+}
+
+.About-content strong {
+  font-weight: 700;
+  color: #003616;
+}
+
+/* Center lists inside content */
+.About-content ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  display: inline-block;
+  text-align: left;
+  margin: 0 auto 0rem;
+}
+
+.About-content li {
+  margin-bottom: 0.5rem;
+}
