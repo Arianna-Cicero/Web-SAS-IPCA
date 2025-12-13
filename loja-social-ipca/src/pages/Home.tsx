@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Home.css";
+import "../styles/pages/Home.css";
 import CategoryCard from "../components/CategoryCard";
 import CampaignCard from "../components/CampaignCard";
 import { Pie } from "react-chartjs-2";

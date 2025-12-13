@@ -1,0 +1,45 @@
+.select-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.select-label {
+  font-size: 0.9rem;
+  color: #2f6b55;
+  font-weight: 500;
+}
+
+.select-field {
+  background-color: #fafaf1;
+  border: 2px solid #7fbfa3;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Focus */
+.select-field:focus {
+  border-color: #005321;
+  box-shadow: 0 0 0 2px rgba(0, 83, 33, 0.15);
+}
+
+/* Disabled */
+.select-field:disabled {
+  background-color: #f0f0e8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Error */
+.select-error {
+  border-color: #d9534f;
+}
+
+.select-error-text {
+  font-size: 0.8rem;
+  color: #d9534f;
+}

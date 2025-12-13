@@ -11,16 +11,14 @@ const App: React.FC = () => {
   return (
     <>
       <Navbar />
-
       <main style={{ minHeight: "80vh" }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="" element={<Home />} />
           <Route path="/doacoes" element={<Donations />} />
           <Route path="/campanhas" element={<Campaigns />} />
           <Route path="/sobre" element={<About />} />
         </Routes>
       </main>
-
       <Footer />
     </>
   );

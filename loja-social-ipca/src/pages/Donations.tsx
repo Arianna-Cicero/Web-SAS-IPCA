@@ -1,11 +1,123 @@
 import React from "react";
+import "../styles/pages/Donations.css";
+import CategoryCard from "../components/CategoryCard";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import Select from "../components/Dropdown";
+import { useForm } from "react-hook-form";
+
+// Icons
+import foodIcon from "../assets/svg/food.svg";
+import hygieneIcon from "../assets/svg/hygiene.svg";
+import cleaningIcon from "../assets/svg/cleaning.svg";
+
+interface FormData {
+  name: string;
+  email: string;
+  category: string;
+  message: string;
+}
 
 const Donations: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm<FormData>({
+    mode: "onChange",
+  });
+
+  async function onSubmit(data: FormData) {
+    await new Promise((r) => setTimeout(r, 1500));
+  }
+
   return (
-    <section style={{ textAlign: "center", padding: "4rem" }}>
-      <h1>Doações</h1>
-      <p>Apoie a nossa causa!</p>
-    </section>
+    <div className="donations-page">
+      {/* HERO */}
+      <section className="home-hero">
+        <h1 className="donations-title">Doações</h1>
+        <p className="donations-paragraph">Apoie a nossa boa causa!</p>
+      </section>
+
+      {/* CONTAINER CENTRAL */}
+      <div className="donations-container">
+        {/* CONTEÚDO CENTRADO */}
+        <section className="donations-content">
+          <div className="home-categories">
+            <CategoryCard icon={foodIcon} title="Bens Alimentares" />
+            <CategoryCard
+              icon={hygieneIcon}
+              title="Produtos de Higiene Pessoal"
+            />
+            <CategoryCard
+              icon={cleaningIcon}
+              title="Produtos de Higiene Habitacional"
+            />
+          </div>
+
+          <h2 className="subtitle-donations">Necessidades atuais</h2>
+          <ul className="donations-content ul">
+            <li className="donations-content li">Leite</li>
+            <li className="donations-content li">Massa</li>
+            <li className="donations-content li">Arroz</li>
+          </ul>
+        </section>
+
+        {/* FORMULÁRIO ALINHADO À ESQUERDA */}
+        <section className="donation-form-wrapper">
+          <h2>Formulário de Doação</h2>
+
+          <form className="donation-form" onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              label="Nome"
+              value=""
+              placeholder="Digite o seu nome"
+              {...register("name", { required: "Nome é obrigatório" })}
+              error={errors.name?.message}
+            />
+
+            <Input
+              label="Email"
+              type="email"
+              value=""
+              placeholder="Digite o seu email"
+              {...register("email", { required: "Email é obrigatório" })}
+              error={errors.email?.message}
+            />
+
+            <Select
+              label="Categoria"
+              options={[
+                { label: "Alimentação", value: "food" },
+                { label: "Roupa", value: "clothes" },
+              ]}
+              {...register("category", {
+                required: "Categoria é obrigatória",
+              })}
+              error={errors.category?.message}
+            />
+
+            <Input
+              label="Mensagem"
+              value=""
+              as="textarea"
+              placeholder="Digite a sua mensagem"
+              {...register("message")}
+              style={{ height: "120px" }}
+            />
+
+            <Button
+              type="submit"
+              loading={isSubmitting}
+              disabled={!isValid}
+              size="md"
+            >
+              Enviar
+            </Button>
+          </form>
+        </section>
+      </div>
+    </div>
   );
 };
 

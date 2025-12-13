@@ -1,11 +1,12 @@
 import React from "react";
-import "../styles/CampaignCard.css";
+import "../styles/components/CampaignCard.css";
 
 interface CampaignCardProps {
   image: string;
   title: string;
-  description: string;
+  description?: string;
   link?: string;
+  color?: string;
 }
 
 const CampaignCard: React.FC<CampaignCardProps> = ({
@@ -13,9 +14,10 @@ const CampaignCard: React.FC<CampaignCardProps> = ({
   title,
   description,
   link = "#",
+  color
 }) => {
   return (
-    <div className="campaign-card">
+    <div className="campaign-card" style={{ color: color || "#007a47" }}>
       <img src={image} alt={title} className="campaign-image" />
       <div className="campaign-content">
         <h3>{title}</h3>

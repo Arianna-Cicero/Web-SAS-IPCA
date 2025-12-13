@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import "../styles/Navbar.css";
+import "../styles/components/Navbar.css";
 import logo from "../assets/svg/ipca-logo-green.svg";
 
 const Navbar: React.FC = () => {

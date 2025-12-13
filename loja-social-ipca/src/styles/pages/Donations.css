@@ -1,0 +1,100 @@
+.donations-page {
+  background-color: #fafaf1;
+    font-family: "Inter", sans-serif;
+
+}
+
+.donations-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.donations-content {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.donation-form-wrapper {
+  max-width: 100%;   
+  margin-top: 2rem;
+}
+
+.donation-form button {
+  align-self: flex-start;
+}
+
+.donation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.donations {
+  background-color: #fafaf1;
+  color: #005321;
+  font-family: "Inter", sans-serif;
+  text-align: left;
+}
+
+/* Hero */
+.donations-hero {
+  background-color: #005321;
+  color: #fafaf1;
+  padding: 3.5rem 1rem;
+}
+
+.donations-tile h1 {
+  font-size: 3.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.donations-paragraph p {
+  font-size: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+/* Categorias */
+.home-categories {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: -5rem 0;
+  margin-bottom: 0.8rem;
+}
+
+
+.home-donations h2 {
+  color: #005321;
+  margin-bottom: 2rem;
+}
+
+.campaigns-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+
+/* Center lists inside content */
+.donations-content ul {
+  list-style: disc;
+  padding-left: 1.2rem;
+  display: inline-block;
+  text-align: left;
+  margin: 0 auto 0rem;
+}
+
+.donations-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Subtitulos */
+.subtitle-donations h2 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 2rem 0;
+
+}

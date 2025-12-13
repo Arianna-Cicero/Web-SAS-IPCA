@@ -1,54 +1,55 @@
 import React from "react";
+import "../styles/components/Input.css";
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  error?: string;
+interface InputProps {
   label?: string;
+  value?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  type?: string;
+  size?: "sm" | "md" | "lg";
+  color?: string;
+  as?: "input" | "textarea";
+  error?: string;
+  id?: string;
+  name?: string;
+  [key: string]: any;
 }
 
-const Input: React.FC<InputProps> = ({ error, label, className, ...props }) => {
+export default function Input({
+  label,
+  value,
+  onChange,
+  type = "text",
+  size = "md",
+  color = "#7FBFA3",
+  as = "input",
+  error,
+  id,
+  name,
+  ...rest
+}: InputProps) {
+  const Component = as;
+
   return (
-    <div style={{ marginBottom: "0.5rem" }}>
+    <div className={`input-wrapper input-${size}`}>
       {label && (
-        <label
-          htmlFor={props.id}
-          style={{
-            display: "block",
-            marginBottom: "0.25rem",
-            fontWeight: 500,
-            fontSize: "0.9rem",
-          }}
-        >
+        <label htmlFor={id || name} className="input-label">
           {label}
         </label>
       )}
-      <input
-        {...props}
-        className={`${className || ""} ${error ? "input-error" : ""}`}
-        style={{
-          padding: "0.5rem",
-          borderRadius: "4px",
-          border: error ? "2px solid #d32f2f" : "1px solid #ccc",
-          fontSize: "1rem",
-          ...props.style,
-        }}
-        aria-invalid={!!error}
-        aria-describedby={error ? `${props.id}-error` : undefined}
+
+      <Component
+        id={id || name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        className={`input-field ${error ? "input-error" : ""}`}
+        style={{ borderColor: color }}
+        {...rest}
       />
-      {error && (
-        <p
-          id={`${props.id}-error`}
-          style={{
-            color: "#d32f2f",
-            fontSize: "0.85rem",
-            marginTop: "0.25rem",
-          }}
-        >
-          {error}
-        </p>
-      )}
+
+      {error && <span className="input-error-text">{error}</span>}
     </div>
   );
-};
-
-export default Input;
+}
