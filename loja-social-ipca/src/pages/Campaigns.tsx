@@ -1,15 +1,13 @@
 import React from "react";
-import "../styles/pages/Campaign.css";
 import { useForm } from "react-hook-form";
-//components
+// Components
 import CampaignCard from "../components/CampaignCard";
 import Button from "../components/Button";
 import Input from "../components/Input";
-//Photos
+import Select from "../components/Dropdown";
+// Images
 import donateImg from "../assets/jpg/donate.jpg";
 import clothesImg from "../assets/png/clothes.png";
-
-
 
 interface FormData {
   name: string;
@@ -19,7 +17,7 @@ interface FormData {
 }
 
 const Campaigns: React.FC = () => {
-    const {
+  const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting, isValid },
@@ -29,67 +27,75 @@ const Campaigns: React.FC = () => {
 
   async function onSubmit(data: FormData) {
     await new Promise((r) => setTimeout(r, 1500));
+    console.log("Form submitted:", data);
   }
 
   return (
-    <div className="home">
-      <section className="home-hero">
-      <h1 >Campanhas</h1>
-      <p >Apoie as iniciativas de soliedaridade da Loja Social IPCA</p>
+    <div className="page-container">
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-inner">
+          <h1>CAMPANHAS</h1>
+          <p>Apoie as iniciativas de solidariedade da Loja Social IPCA</p>
+        </div>
       </section>
 
-      {/* CATEGORIES */}
-      <section className="home-categories">
-        <CampaignCard image={donateImg} title="Recolha de alimentos" description="10 de abril a 25 de abril"/>
+      {/* CAMPAIGN CARDS */}
+      <section className="cards-grid">
+        <CampaignCard image={donateImg} title="Recolha de alimentos" description="10 de abril a 25 de abril" />
         <CampaignCard image={donateImg} title="Solidariedade em ação" />
-        <CampaignCard
-          image={clothesImg}
-          title="Campanha de vestuário"
-        />
-        <CampaignCard
-          image={donateImg}
-          title="Doe calçado"
-        />
+        <CampaignCard image={clothesImg} title="Campanha de vestuário" />
+        <CampaignCard image={donateImg} title="Doe calçado" />
       </section>
 
-      {/* CATEGORIES */}
-      <section className="form-section">
-        <form onSubmit={handleSubmit(onSubmit)}>
-        <h1>Perguntas</h1>
-          <Input
-            label="Nome"
-            name="name"
-            value=""
-            onChange={() => {}}
-            placeholder="Digite o seu nome"
-            size="lg"
-            />
-          <Input
-            label="Email"
-            name="email"
-            type="email"
-            value=""
-            onChange={() => {}}
-            placeholder="Digite o seu email"
-            size="lg"
-            />
-          <Input
-            label="Mensagem"
-            name="message"
-            as="textarea"
-            value=""
-            onChange={() => {}}
-            placeholder="Digite a sua mensagem"
-            size="lg"
-            style={{ height: "100px" }}
-            />
-          <Button type="submit" loading={isSubmitting} variant="outline" size="sm"  disabled={!isValid}>
-            Enviar
-          </Button>
-        </form>
+      {/* CONTAINER CENTRAL */}
+      <div className="container">
+        {/* FORM SECTION */}
+        <section className="form-wrapper">
+          <h2 className="form-title">Perguntas e Sugestões</h2>
 
-      </section>
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              label="Nome"
+              placeholder="Digite o seu nome"
+              {...register("name", { required: "Nome é obrigatório" })}
+              error={errors.name?.message}
+            />
 
+            <Input
+              label="Email"
+              type="email"
+              placeholder="Digite o seu email"
+              {...register("email", { required: "Email é obrigatório" })}
+              error={errors.email?.message}
+            />
+
+            <Select
+              label="Categoria"
+              options={[
+                { label: "Informação", value: "info" },
+                { label: "Sugestão", value: "suggestion" },
+                { label: "Outro", value: "other" },
+              ]}
+              {...register("category")}
+              error={errors.category?.message}
+            />
+
+            <Input
+              label="Mensagem"
+              as="textarea"
+              placeholder="Digite a sua mensagem"
+              {...register("message", { required: "Mensagem é obrigatória" })}
+              error={errors.message?.message}
+              style={{ height: "120px" }}
+            />
+
+            <Button type="submit" loading={isSubmitting} disabled={!isValid} size="md">
+              Enviar
+            </Button>
+          </form>
+        </section>
+      </div>
     </div>
   );
 };

@@ -32,42 +32,27 @@ const Donations: React.FC = () => {
   }
 
   return (
-    <div className="donations-page">
-      {/* HERO */}
-      <section className="home-hero">
-        <h1 className="donations-title">Doações</h1>
-        <p className="donations-paragraph">Apoie a nossa boa causa!</p>
+    <div className="page-container">
+      <section className="hero">
+        <div className="hero-inner">
+          <h1>DOAÇÕES</h1>
+          <p>Ajude a nossa comunidade</p>
+        </div>
       </section>
 
-      {/* CONTAINER CENTRAL */}
-      <div className="donations-container">
-        {/* CONTEÚDO CENTRADO */}
-        <section className="donations-content">
-          <div className="home-categories">
-            <CategoryCard icon={foodIcon} title="Bens Alimentares" />
-            <CategoryCard
-              icon={hygieneIcon}
-              title="Produtos de Higiene Pessoal"
-            />
-            <CategoryCard
-              icon={cleaningIcon}
-              title="Produtos de Higiene Habitacional"
-            />
-          </div>
+      <section className="cards-grid">
+        <CategoryCard icon={foodIcon} title="Bens Alimentares" />
+        <CategoryCard icon={hygieneIcon} title="Produtos de Higiene Pessoal" />
+        <CategoryCard
+          icon={cleaningIcon}
+          title="Produtos de Higiene Habitacional"
+        />
+      </section>
 
-          <h2 className="subtitle-donations">Necessidades atuais</h2>
-          <ul className="donations-content ul">
-            <li className="donations-content li">Leite</li>
-            <li className="donations-content li">Massa</li>
-            <li className="donations-content li">Arroz</li>
-          </ul>
-        </section>
-
-        {/* FORMULÁRIO ALINHADO À ESQUERDA */}
-        <section className="donation-form-wrapper">
-          <h2>Formulário de Doação</h2>
-
-          <form className="donation-form" onSubmit={handleSubmit(onSubmit)}>
+      <div className="container">
+        <section className="form-wrapper">
+          <h2 className="form-title">Perguntas e Sugestões</h2>
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <Input
               label="Nome"
               value=""
